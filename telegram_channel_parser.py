@@ -11,16 +11,21 @@ dp = Dispatcher()
 
 async def get_bot_channels():
     bot_info = await bot.get_me()
-    updates = await bot.get_updates()
-    channels = set()
+    rights = await bot.get_my_default_administrator_rights()
     
-    for update in updates:
-        if update.my_chat_member:
-            chat = update.my_chat_member.chat
-            if chat.type == "channel":
-                channels.add(chat.id)
-    
-    return list(channels)
+    if rights.can_manage_chat:
+        updates = await bot.get_updates()
+        channels = set()
+        
+        for update in updates:
+            if update.my_chat_member:
+                chat = update.my_chat_member.chat
+                if chat.type == "channel":
+                    channels.add(chat.id)
+        
+        return list(channels)
+    else:
+        return []
 
 async def check_user_in_channels(user_id, channels):
     for channel_id in channels:

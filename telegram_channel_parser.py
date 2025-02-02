@@ -5,7 +5,7 @@ from aiogram.types import ChatMember
 
 # Данные бота
 BOT_TOKEN = "8073491952:AAGYuMf5Cat7pDjNkm_cNYqU7WHqDD84ZRQ"
-CHANNELS = [-1001941645422, -1009876543210]  # ID закрытых каналов
+CHANNELS = [-1001941645422, -1002459000726]  # ID закрытых каналов
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
